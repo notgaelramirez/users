@@ -7,21 +7,48 @@
 }
 
 .header{
-  padding-top: 30px;
-  padding-bottom: 30px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.541);
+  height: 12vh;
+  min-width: 100vh;
+  padding-top: 5px;
+  padding-bottom: 15px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.541);
+  z-index: 1;
 }
+
 
 h1{
   color: #004173;
 }
 
-article{
+.container{
+  min-height: 85vh;
+}
+
+.downbar{
+  position: fixed;
+  bottom: 1rem;
+  background-color: rgba(121, 196, 209, 0.8);
+  width: 100%;
+  min-height: 12vh;
+  border-radius: 4rem;
+  padding: 1rem 2.25rem;
+  backdrop-filter: blur(10px);
+  transition: .4s;
+}
+
+.card-zone{
   padding-top: 40px;
-  min-width: 100vw;
-  justify-content: center;
+  gap: 20px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form{
+  min-height: 100vh;
+  background: #1cc00d;
+  max-width: 20vw;
+  z-index: 1;
 }
 
 .user-card{
@@ -34,6 +61,7 @@ article{
   background-color: #7caef9c4;
   min-width: 40vw;
   min-height: 15vh;
+  max-height: 15vh;
   border-radius: 0 15px 15px 15px;
   line-height: 25px;
 }

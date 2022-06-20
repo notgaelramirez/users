@@ -26,15 +26,21 @@ function App() {
         <h1>USERS LIST</h1>
       </header>
 
-      <article>
-        {
-          users?.map(user=>(
-          <UsersList
-          key={user.id}
-          user={user} 
-          />))
-        }
-      </article>
+      <div className="container">
+        <div className='card-zone'>
+           {
+            users?.map(user=>(
+            <UsersList
+            key={user.id}
+            user={user} 
+            />))
+            }
+        </div>
+      </div>
+
+      <div className="downbar">
+        Hola
+      </div>
     </div>
   )
 }
