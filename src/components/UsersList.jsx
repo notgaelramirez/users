@@ -1,7 +1,16 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 //=============================
 
-const UsersList = ({user}) => {
+const UsersList = ({user, getData}) => {
+
+  const deleteUser = () =>{
+    axios.delete(`https://users-crud1.herokuapp.com/users/${user?.id}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+      .finally(() => getData())
+  }
+
 
   return (
     <div className='user-card'>
@@ -13,7 +22,7 @@ const UsersList = ({user}) => {
       </div>
 
       <aside className='crud'>
-        <button className='delete'><span className="material-symbols-outlined">delete</span></button>
+        <button onClick={deleteUser} className='delete'><span className="material-symbols-outlined">delete</span></button>
         <button><span className="material-symbols-outlined">edit</span></button>
       </aside>
     </div>

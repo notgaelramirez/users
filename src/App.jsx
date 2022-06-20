@@ -13,20 +13,19 @@ function App() {
       .then(res => setUsers(res.data))
   }
 
-  console.log(users)
-
   const addUser = () =>{
 
     let newUser = {
-      email: 'ga12@gmail.com',
+      email: 'prueba1@gmail.com',
       password: 'password',
-      first_name: 'Gael',
-      last_name: 'Ramirez',
+      first_name: 'Hector',
+      last_name: 'Cruz',
     }
 
     axios.post(URL, newUser)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
+      .finally(() => getData())
   }
 
   useEffect(()=>{
@@ -44,6 +43,7 @@ function App() {
            {
             users?.map(user=>(
             <UsersList
+            getData ={getData}
             key={user.id}
             user={user} 
             />))
@@ -60,8 +60,9 @@ function App() {
             <input type="text" placeholder='Email' />
           </form>
         </div>
+        <button onClick={addUser}>Click</button>
       </div>
-    </div>
+    </div> 
   )
 }
 
