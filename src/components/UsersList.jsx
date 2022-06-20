@@ -5,10 +5,27 @@ import React, { useEffect, useState } from 'react'
 const UsersList = ({user, getData}) => {
 
   const deleteUser = () =>{
-    axios.delete(`https://users-crud1.herokuapp.com/users/${user?.id}`)
+    axios.delete(`https://users-crud1.herokuapp.com/users/${user.id}/`)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
       .finally(() => getData())
+  }
+
+
+  const editUser = () =>{
+
+    let userUpdate = {
+      email:'prueba2@gmail.com',
+      password:'password',
+      first_name: 'Hectora',
+      last_name: 'Chaparro',
+
+    }
+
+    axios.put(`https://users-crud1.herokuapp.com/users/${user.id}/`, userUpdate)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+      .finally(()=> getData())
   }
 
 
@@ -23,7 +40,7 @@ const UsersList = ({user, getData}) => {
 
       <aside className='crud'>
         <button onClick={deleteUser} className='delete'><span className="material-symbols-outlined">delete</span></button>
-        <button><span className="material-symbols-outlined">edit</span></button>
+        <button onClick={editUser}><span className="material-symbols-outlined">edit</span></button>
       </aside>
     </div>
   )
