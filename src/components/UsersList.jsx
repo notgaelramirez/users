@@ -1,23 +1,7 @@
-import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 //=============================
 
-const UsersList = () => {
-
-  let[user,setUser] = useState()
-  const URL = 'https://users-crud1.herokuapp.com/users/'
-
-  const getUser = () =>{
-    axios.get(URL)
-      .then(res => setUser(res.data))
-      .catch(error => console.log(error))
-  }
-  
-  console.log(user)
-
-  useEffect(()=>{
-    getUser()
-  }, [])
+const UsersList = ({user}) => {
 
   return (
     <div className='user-card'>

@@ -5,28 +5,19 @@ import './App.css'
 import UsersList from './components/UsersList'
 
 function App() {
-  const [data, setData] = useState()
+  let [users, setUsers] = useState()
   const URL = 'https://users-crud1.herokuapp.com/users/'
 
-
-  const getLength = () =>{
+  const getData = () =>{
     axios.get(URL)
-    .then(res=>setData(res.data))
+      .then(res => setUsers(res.data))
   }
 
-  console.log(data)
-  console.log(data?.length)
-
-  const random = () =>{
-  
-    let randn = Math.round(Math.random() * data?.length)
-    console.log( 'ran' + randn)
-  }
+  console.log(users)
 
 
   useEffect(()=>{
-    getLength()
-    random()
+    getData()
   }, [])
 
   return (
@@ -36,7 +27,13 @@ function App() {
       </header>
 
       <article>
-       
+        {
+          users?.map(user=>(
+          <UsersList
+          key={user.id}
+          user={user} 
+          />))
+        }
       </article>
     </div>
   )
