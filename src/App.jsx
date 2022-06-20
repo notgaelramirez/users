@@ -15,6 +15,19 @@ function App() {
 
   console.log(users)
 
+  const addUser = () =>{
+
+    let newUser = {
+      email: 'ga12@gmail.com',
+      password: 'password',
+      first_name: 'Gael',
+      last_name: 'Ramirez',
+    }
+
+    axios.post(URL, newUser)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  }
 
   useEffect(()=>{
     getData()
@@ -39,7 +52,14 @@ function App() {
       </div>
 
       <div className="downbar">
-        Hola
+        <div className='add-user'>Agregar un usuario</div>
+        <div className="form">
+          <form action="">
+            <input type="text" placeholder='Nombre' />
+            <input type="text" placeholder='Apellido' />
+            <input type="text" placeholder='Email' />
+          </form>
+        </div>
       </div>
     </div>
   )
