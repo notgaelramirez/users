@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import './App.css'
 import UsersList from './components/UsersList'
 
@@ -13,20 +14,15 @@ function App() {
       .then(res => setUsers(res.data))
   }
 
-  const addUser = () =>{
+  const submit = data =>{
 
-    let newUser = {
-      email: 'prueba1@gmail.com',
-      password: 'password',
-      first_name: 'Hector',
-      last_name: 'Cruz',
-    }
-
-    axios.post(URL, newUser)
+    axios.post(URL, data)
       .then(res => console.log(res.data))
       .catch(err => console.log(err))
       .finally(() => getData())
   }
+
+  const {handleSubmit, register} = useForm()
 
   useEffect(()=>{
     getData()
@@ -54,13 +50,25 @@ function App() {
       <div className="downbar">
         <div className='add-user'>Agregar un usuario</div>
         <div className="form">
-          <form action="">
-            <input type="text" placeholder='Nombre' />
-            <input type="text" placeholder='Apellido' />
-            <input type="text" placeholder='Email' />
+          <form onSubmit={handleSubmit(submit)} action="">
+            <label htmlFor="name">Name</label>
+            <input type="text" id='name' {...register('first_name')} />
+            
+            <label htmlFor="lastName">Lastname</label>
+            <input type="text" id='lastName' {...register('last_name')}/>
+
+            <label htmlFor="email">Email</label>
+            <input type="text" id='email' {...register('email')}/>
+
+            <label htmlFor="bday">Birthday</label>
+            <input type="date" id='bday' {...register('birthday')}/>
+
+            <label htmlFor="password">Password</label>
+            <input type="password" id='password' {...register('password')}/>
+
+            <button className='submit'>Submit</button>
           </form>
         </div>
-        <button onClick={addUser}>Click</button>
       </div>
     </div> 
   )
